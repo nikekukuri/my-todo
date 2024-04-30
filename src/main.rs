@@ -22,7 +22,7 @@ enum RepositoryError {
 
 pub trait TodoRepository: Clone + std::marker::Send + std::marker::Sync + 'static {
     fn create(&self, payload: CreateTodo) -> Todo;
-    fn find(&self, id: i32) -> Option<Todo>
+    fn find(&self, id: i32) -> Option<Todo>;
     fn all(&self) -> Vec<Todo>;
     fn update(&self, id: i32, payload: UpdateTodo) -> anyhow::Result<Todo>;
     fn delete(&self, id: i32) -> anyhow::Result<()>;
@@ -53,6 +53,43 @@ impl Todo {
             text,
             completed: false,
         }
+    }
+}
+
+type TodoDatas = HashMap<i32, Todo>;
+
+#[derive(Debug, Clone)]
+pub struct TodoRepositoryForMemory {
+    store: Arc<RwLock<TodoDatas>>,
+}
+
+impl TodoRepositoryForMemory {
+    pub fn new() -> Self {
+        TodoRepositoryForMemory {
+            store: Arc::default(),
+        }
+    }
+}
+
+impl TodoRepository for TodoRepositoryForMemory {
+    fn create(&self, payload: CreateTodo) -> Todo {
+        todo!();
+    }
+
+    fn find(&self, id: i32) -> Option<Todo> {
+        todo!();
+    }
+
+    fn all(&self) -> Vec<Todo> {
+        todo!();
+    }
+
+    fn update(&self, id: i32, payload: UpdateTodo) -> anyhow::Result<Todo> {
+        todo!();
+    }
+
+    fn delete(&self, id: i32) -> anyhow::Result<()> {
+        todo!();
     }
 }
 
