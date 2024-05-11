@@ -11,6 +11,7 @@ use axum::{
 };
 use std::net::SocketAddr;
 use std::{env, sync::Arc};
+use validator::Validate;
 
 
 #[tokio::main]
